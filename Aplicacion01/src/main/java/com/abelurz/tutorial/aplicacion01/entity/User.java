@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,20 +32,26 @@ public class User implements Serializable {
 	private Long id;
 	
 	@Column
+	@NotBlank
+	@Size(min = 5, max = 8, message = "No cumple reglas de tamaño")
 	private String firstName;
 	@Column
+	@NotBlank
 	private String lastName;
 	@Column
+	@NotBlank
 	private String email;
 	@Column
+	@NotBlank
 	private String userName;
 	@Column
+	@NotBlank
 	private String password;
 
 	@Transient //Hibernate no crea este campo
+	@NotBlank
 	private String confirmPassword;
 	
-
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
