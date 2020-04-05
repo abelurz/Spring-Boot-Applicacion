@@ -33,7 +33,7 @@ public class User implements Serializable {
 	
 	@Column
 	@NotBlank
-	@Size(min = 5, max = 8, message = "No cumple reglas de tamaño")
+	@Size(min = 4, max = 8, message = "No cumple reglas de tamaño")
 	private String firstName;
 	@Column
 	@NotBlank
@@ -49,7 +49,6 @@ public class User implements Serializable {
 	private String password;
 
 	@Transient //Hibernate no crea este campo
-	@NotBlank
 	private String confirmPassword;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
