@@ -108,5 +108,15 @@ public class UserController {
 		return "redirect:/userForm";
 	}
 	
+	@GetMapping("/deleteUser/{id}")
+	public String deleteUser(Model model, @PathVariable(name = "id") Long id) {
+		try {
+			userService.deleteUser(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("listErrorMessage", e.getMessage());
+		}
+		return userForm(model);
+	}
 	
 }
