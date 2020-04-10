@@ -1,6 +1,5 @@
 package com.abelurz.tutorial.aplicacion01.controller;
 
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -31,13 +30,14 @@ public class UserController {
 	@Autowired
 	RoleRepository roleRepository;
 	
-	@GetMapping("/")
+	@GetMapping({"/","/login"})
 	public String index() {
 		return "index";
 	}
 	
 	@GetMapping("/userForm")
 	public String userForm(Model model) {
+		System.out.println("Hola Llegamos aqui --->");
 		model.addAttribute("userForm",new User());
 		model.addAttribute("userList", userService.getAllUsers());
 		model.addAttribute("roles",roleRepository.findAll());
@@ -48,7 +48,7 @@ public class UserController {
 	@PostMapping("/userForm")
 	public String createUser(@Valid @ModelAttribute("userForm") User user, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
-			System.out.println("Lllega aqui ----> ");
+			System.out.println("Llega aqui ----> ");
 			model.addAttribute("userForm", user);
 			model.addAttribute("formTab","active");
 		}else {
