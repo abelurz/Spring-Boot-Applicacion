@@ -1,6 +1,5 @@
 <div class="table-responsive">
-	<table id="userList"
-		class="table table-bordered table-hover table-striped">
+	<table id="userList" class="table table-bordered table-hover table-striped">
 		<thead class="thead-light">
 			<tr>
 				<th scope="col">#</th>
@@ -18,7 +17,7 @@
 				<td th:text="${user.lastName}"></td>
 				<td th:text="${user.userName}"></td>
 				<td th:text="${user.email}"></td>
-				<td>
+				<td align="right">
 					<span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==user.userName})">
     					<a href="#" th:href="@{'/editUser/'+ ${user.id}}"><i class="fas fa-edit"></i></a>
 					</span>
