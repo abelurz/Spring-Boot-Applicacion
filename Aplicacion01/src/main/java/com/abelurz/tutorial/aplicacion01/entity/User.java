@@ -49,6 +49,7 @@ public class User implements Serializable {
 	private String password;
 
 	@Transient //Hibernate no crea este campo
+	@NotBlank
 	private String confirmPassword;
 	
 	@Size
